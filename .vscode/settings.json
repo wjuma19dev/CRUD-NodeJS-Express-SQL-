@@ -1,0 +1,11 @@
+{
+  "editor.fontFamily": "Hi Melody",
+  "editor.inlayHints.fontFamily": "Hi Melody",
+  "debug.console.fontFamily": "Hi Melody",
+  "editor.inlineSuggest.fontFamily": "Hi Melody",
+  "editor.experimentalInlineEdit.fontFamily": "Hi Melody",
+  "scm.inputFontFamily": "Hi Melody",
+  "notebook.output.fontFamily": "Hi Melody",
+  "chat.editor.fontFamily": "Hi Melody",
+  "editor.codeLensFontFamily": "Hi Melody"
+}
