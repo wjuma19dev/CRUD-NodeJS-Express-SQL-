@@ -1,0 +1,56 @@
+<div class="row">
+	{{#if personas}}
+    <div class="col-md-12 mt-5">
+      <table class="text-center table table-striped">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each personas}}
+            <tr>
+              <td scope="row">{{person_id}}</td>
+              <td>{{name}}</td>
+              <td>{{last_name}}</td>
+              <td>{{age}}</td>
+              <td>
+                <div class="btn-group">
+                  <a href="/personas/edit/{{person_id}}" class="btn btn-warning">
+                    <i class="bi bi-pencil-square p-2"></i>
+                    
+                  </a>
+                  <a href="/personas/delete/{{person_id}}" class="btn btn-danger">
+                    <i class="bi bi-trash p-2"></i>
+                    
+                  </a>
+                </div>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+        <tfoot>
+          <tr class="table-dark ">
+            <td colspan="12">REGISTRO DE PERSONAS</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  {{else}}
+    <div class="col-12 mt-5">
+      <div class="card" style="width: 350px;">
+        <div class="card-header">
+          <h3 class="card-title">Debes de crear una persona</h3>
+        </div>
+        <div class="card-body">
+          <p>Presiona el siguiente boton para que puedas resgistrar una persona en la aplicacion</p>
+          <a href="/personas/add" class="btn btn-primary">Ir a crear</a>
+        </div>
+      </div>
+    </div>
+	{{/if}}
+</div>

@@ -1,12 +1,13 @@
 import colors from 'colors';
 import express from 'express';
-import path from 'path';
+import path, { dirname } from 'path';
 import morgan from 'morgan';
+import errorHandler from 'errorhandler';
 
 import { engine } from 'express-handlebars';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
+import personaRoutes from './routes/persona.route.js';
 
 //  Environments
 import dotenv from 'dotenv';
@@ -36,11 +37,23 @@ app.set('view engine', 'hbs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+if(process.env.NODE_ENV === 'development') {
+  app.use(errorHandler());
+}
+app.use('/personas', personaRoutes);
 
 // Routes
 app.get('/', (req, res) => {
-  res.json({ message: 'Hello' });
+  res.render('index', {
+    title: 'Crud con Nodejs, Express y SQL'
+  });
 })
+
+app.use((err, req, res, next) => {
+  let { status, type, message, stack } = err;
+  message = message.slice(6);
+  res.render('errors/error', {status, type, message, stack});
+});
 
 // Public files
 app.use(express.static(path.join(__dirname, 'public')));

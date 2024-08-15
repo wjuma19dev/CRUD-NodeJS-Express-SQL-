@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-4 offset-4 mt-4">
+    {{#if response}}
+      {{#each response}}
+        <div 
+          {{#if error }}
+            class="alert bg-danger text-white"
+          {{else}}
+            class="alert alert-success"
+          {{/if}}
+        >
+          {{#if error}}
+            {{ message }}
+          {{else}}
+            {{ message }}.
+            <a class="alert-link" href="/personas/listar">Ir al listado de personas</a>
+          {{/if}}
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  <div class="col-4 offset-4 mt-2">
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          {{#if person}}
+            Editar persona
+          {{else}}
+            Crear una persona
+          {{/if}}
+        </h3>
+      </div>
+      <form 
+        class="card-body" 
+        method="POST" 
+        {{#if person}}
+          action="/personas/edit/{{person.person_id}}"
+        {{else}}
+          action="/personas/add"
+        {{/if}}
+      >
+        <div class="mb-3 input-group">
+          <label for="name" class="input-group-text">Nombres</label>
+          <input  
+            name="first_name" 
+            type="text" 
+            class="form-control" 
+            {{#if person}}
+            value="{{person.name}}"
+            {{/if}}
+          >
+        </div>
+        <div class="mb-3 input-group">
+          <label for="last_name" class="input-group-text">Apellidos</label>
+          <input 
+            name="last_name" 
+            type="text" 
+            class="form-control"
+            {{#if person}}
+            value="{{person.last_name}}"
+            {{/if}}
+          >
+        </div>
+        <div class="mb-3 input-group">
+          <label for="age" class="input-group-text">Edad</label>
+          <input 
+            name="age" 
+            type="number" 
+            class="form-control"
+            {{#if person}}
+            value="{{person.age}}"
+            {{/if}}
+          >
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-dark">
+            {{#if person}}
+              Actualizar
+            {{else}}  
+              Crear Persona
+            {{/if}}
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
